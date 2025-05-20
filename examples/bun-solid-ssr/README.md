@@ -18,6 +18,11 @@ Effect Bundler provides composable fully effectful abstractions that you can use
 # Usage
 
 ```sh
+# clone the example
+bunx degit https://github.com/nounder/effect-bundler/examples/bun-solid-ssr solid-sample
+```
+
+```sh
 # Install all dependencies
 bun install
 
