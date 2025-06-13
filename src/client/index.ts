@@ -11,6 +11,7 @@ import type {
   BundleEvent,
   BundleManifest,
 } from "../Bundle.ts"
+import { showBuildError } from "./Overlay.ts"
 import * as ScrollState from "./ScrollState.ts"
 
 function reload() {
@@ -38,9 +39,14 @@ async function loadAllEntrypoints() {
 }
 
 function handleBundleEvent(event: BundleEvent) {
-  if (event.type === "Change") {
-    console.debug("Bundle change detected...")
-    reload()
+  switch (event.type) {
+    case "Change":
+      console.debug("Bundle change detected...")
+      reload()
+      break
+    case "BuildError":
+      showBuildError(event.error)
+      break
   }
 }
 

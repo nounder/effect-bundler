@@ -70,10 +70,15 @@ export const BundleManifestSchema = S.Struct({
 
 export type BundleManifest = typeof BundleManifestSchema.Type
 
-export type BundleEvent = {
-  type: "Change"
-  path: string
-}
+export type BundleEvent =
+  | {
+    type: "Change"
+    path: string
+  }
+  | {
+    type: "BuildError"
+    error: string
+  }
 
 export type BundleKey = `${string}Bundle`
 
