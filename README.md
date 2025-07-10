@@ -59,7 +59,7 @@ import {
 
 const ClientBundle = BunBundle.bundleClient({
   entrypoints: [
-    IndexHtml,
+    "./src/index.html",
   ],
   plugins: [
     BunTailwindPlugin.make(),
@@ -76,12 +76,13 @@ Then in your main CSS files add following file:
 ### Static File Serving
 
 ```ts
+import { HttpRouter } from "@effect/platform"
 import { PublicDirectory } from "effect-bundler"
 
 // Serve files from ./public directory
 const PublicFiles = PublicDirectory.make()
 
 HttpRouter.empty.pipe(
-  HttpRouter.use("*", PublicFiles),
+  HttpRouter.get("*", PublicFiles),
 )
 ```
